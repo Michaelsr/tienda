@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <h3>¿Deseas Eliminar el Registro de {{ object.Compra }}?</h3>
+        <button type="submit" class="btn btn-danger">Si, eliminar</button>
+       {#  <a class= "btn btn-default" href="{% url 'almacenIndex:almacen_listar' %}">Cancelar</a> #}
+    </form>
+{% endblock %}

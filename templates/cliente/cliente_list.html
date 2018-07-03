@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Apellidos</td>
+            <td>DNI</td>
+            <td>Sexo</td>
+            <td>Opciones</td>
+
+		</tr>
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for cliente in object_list %}
+		<tr>
+			<td>{{ cliente.id }}</td>
+            <td>{{ cliente.Nombre }}</td>
+            <td>{{ cliente.Apellidos }}</td>
+            <td>{{ cliente.DNI }}</td>
+            <td>{{ cliente.Sexo }}</td>
+
+            <td>
+                <a class="btn btn-primary" href="{% url 'clienteIndex:cliente_editar' cliente.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'clienteIndex:cliente_eliminar' cliente.id %}">Eliminar</a>
+            </td>
+		</tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros</h1>
+        {% endif %}
+	</tbody>
+</table>
+{% endblock%}

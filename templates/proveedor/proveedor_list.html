@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre Proveedor</td>
+			<td>Ruc</td>
+			<td>Direccion</td>
+			<td>Telefono</td>
+            <td>Nombres Encargado</td>
+            <td>Telefono encargado</td>
+            <td>Fecha Ingreso</td>
+            <td>Opciones</td>
+            
+		</tr>
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for proveedor in object_list %}
+		<tr>
+			<td>{{ proveedor.id }}</td>
+			<td>{{ proveedor.NombreProveedor }}</td>
+            <td>{{ proveedor.Ruc }}</td>
+			<td>{{ proveedor.Direccion }}</td>
+            <td>{{ proveedor.Telefono }}</td>
+            <td>{{ proveedor.DatosEncargado }}</td>
+            <td>{{ proveedor.TelefonoEncargado }}</td>
+            <td>{{ proveedor.FechaRegistro }}</td>
+
+
+            <td>
+                <a class="btn btn-primary" href="{% url 'proveedorIndex:proveedor_editar' proveedor.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'proveedorIndex:proveedor_eliminar' proveedor.id %}">Eliminar</a>
+            </td>
+		</tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros</h1>
+        {% endif %}
+	</tbody>
+</table>
+{% endblock%}

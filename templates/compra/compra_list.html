@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+
+			<td>#</td>
+			<td>Nombre de Producto</td>
+			<td>Precio de Compra</td>
+            <td>Proveedor</td>
+            <td>Categoria</td>
+            <td>Fecha</td>
+            <td>Unidad</td>
+            <td>Detalle</td>
+            <td>Opciones</td>
+
+		</tr>
+	</thead>
+	<tbody>
+        {% if object_list %}
+        {% for compra in object_list %}
+		<tr>
+			<td>{{ compra.id }}</td>
+            <td>{{ compra.NombreProducto }}</td>
+            <td>{{ compra.PrecioCompra }}</td>
+            <td>{{ compra.Proveedor }}</td>
+            <td>{{ compra.Categoria }}</td>
+            <td>{{ compra.Fecha }}</td>
+            <td>{{ compra.CajaPaquete }}</td>
+            <td>{{ compra.Detalle }}</td>
+
+            <td>
+                <a class="btn btn-primary" href="{% url 'compraIndex:compra_editar' compra.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'compraIndex:compra_eliminar' compra.id %}">Eliminar</a>
+            </td>
+		</tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros</h1>
+        {% endif %}
+	</tbody>
+</table>
+{% endblock%}
